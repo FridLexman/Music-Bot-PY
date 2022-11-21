@@ -3,7 +3,6 @@ from discord.ext import commands
 import youtube_dl
 import discord.utils
 import urllib.parse, urllib.request, re
-import time
 import asyncio
 
 queue = []
