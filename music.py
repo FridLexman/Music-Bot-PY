@@ -55,12 +55,12 @@ class music(commands.Cog):
                 queue.insert(len(queue), url2) 
                 
         @commands.command()
-        async def show_q(self, ctx):
-            await ctx.send[queue]
+        async def q_lenght(self, ctx):
+            await ctx.send(len(queue))
             
         @commands.command()
         async def clear_q(self, ctx):
-            await queue.clear()    
+            queue.clear()    
 
         @commands.command()
         async def stop(self, ctx):
