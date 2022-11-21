@@ -52,8 +52,7 @@ class music(commands.Cog):
             with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(search_results[0], download=False)
                 url2 = info['formats'][0]['url']
-                queue.insert(len(queue), url2)
-                print(queue) 
+                queue.insert(len(queue), url2) 
 
         @commands.command()
         async def clear_q(self, ctx):
