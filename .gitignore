@@ -1,0 +1,5 @@
+## Ignoring Installed Modules and Sensitive Data
+ffprobe.exe
+ffplay.exe
+ffmpeg.exe
+config.json
