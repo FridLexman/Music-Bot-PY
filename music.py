@@ -53,7 +53,11 @@ class music(commands.Cog):
                 info = ydl.extract_info(search_results[0], download=False)
                 url2 = info['formats'][0]['url']
                 queue.insert(len(queue), url2) 
-
+                
+        @commands.command()
+        async def show_q(self, ctx):
+            await ctx.send[queue]
+            
         @commands.command()
         async def clear_q(self, ctx):
             await queue.clear()    
