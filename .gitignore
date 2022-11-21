@@ -3,3 +3,4 @@ ffprobe.exe
 ffplay.exe
 ffmpeg.exe
 config.json
+settings.json
