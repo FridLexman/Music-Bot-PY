@@ -3,8 +3,9 @@ from discord.ext import commands
 import json
 import clear
 import music
+import meme
 
-cogs = [music, clear]
+cogs = [meme, music, clear]
 
 #Opening config 
 with open('./config.json', 'r') as cjson:
