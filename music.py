@@ -31,7 +31,7 @@ class music(commands.Cog):
             if len(queue) <= 0 and not vc.is_playing() and search is not None:
                 searchResult = self.getYoutubeLink(search)
                 await ctx.send(f'Now playing "{searchResult["title"]}" \nhttp://www.youtube.com/watch?v={searchResult["search_result"]}')
-                queue.insert(len(queue), searchResult["url"])
+                queue.insert(len(queue), searchResult["source"])
 
             # Play a song if there is songs in the queue
             if len(queue) > 0 and not vc.is_playing():
@@ -46,7 +46,7 @@ class music(commands.Cog):
             elif vc.is_playing() and search is not None: 
                 searchResult = self.getYoutubeLink(search)
                 await ctx.send(f'Added "{searchResult["title"]}" to the queue! \nhttp://www.youtube.com/watch?v={searchResult["search_result"]}')
-                queue.insert(len(queue), searchResult["url"]) 
+                queue.insert(len(queue), searchResult["source"]) 
                 
             await asyncio.sleep(5)
             await self.play(ctx, None)
@@ -68,7 +68,7 @@ class music(commands.Cog):
 
             with youtube_dl.YoutubeDL(YDL_OPTIONS) as ydl:
                 info = ydl.extract_info(search_results[0], download=False)
-                data["url"] = info['formats'][0]['url'] 
+                data["source"] = info['formats'][0]['url'] 
                 data["title"] = info["title"]
                 return data  
 
