@@ -10,7 +10,7 @@ class clear(commands.Cog):
             async def clear(ctx, amount=15): 
                 if commands.has_permissions(manage_messages=True): 
                     await ctx.channel.purge(limit=amount)                                     
-                    await ctx.send(f'Messages Deleted!')                        
+                    await ctx.send(f'{amount} Messages Deleted!')                        
                 return
             
 def setup(client):
