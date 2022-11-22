@@ -11,10 +11,9 @@ class music(commands.Cog):
         def __init__(self, client):
             self.client = client 
 
-        @commands.command()
         async def join(self, ctx):
             if ctx.author.voice is None:
-                await ctx.send("You're Not Connected")
+                await ctx.send("You must connect to a channel first!")
             voice_channel = ctx.author.voice.channel
             if ctx.voice_client is None:
                 await voice_channel.connect()
@@ -23,10 +22,11 @@ class music(commands.Cog):
 
         @commands.command(name="play")
         async def play(self, ctx, *, search):
+            # Join if it has not already
+            if ctx.voice_client is None:
+                await self.join(ctx)
             vc = ctx.voice_client
-            if vc is None:
-                await ctx.send('I am not connected! Try using "!join" first')
-                return
+
             # Add to queue if there is nothing in the queue
             if len(queue) <= 0 and not vc.is_playing() and search is not None:
                 searchResult = self.getYoutubeLink(search)
@@ -51,6 +51,11 @@ class music(commands.Cog):
             await asyncio.sleep(5)
             await self.play(ctx, None)
 
+        @play.error
+        async def play_error(self, ctx, error):
+            if isinstance(error, commands.MissingRequiredArgument):
+                await ctx.send('What do you want me to play? Try doing "!play {song name}"')
+
         def getYoutubeLink(self, searchQuery):
             YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True'}
             data = dict()
@@ -73,30 +78,36 @@ class music(commands.Cog):
 
         @commands.command()
         async def stop(self, ctx):
-            await ctx.voice_client.stop()   
+            if ctx.voice_client is None:
+                await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            ctx.voice_client.stop()   
             queue = []
             await ctx.voice_client.disconnect()    
 
         @commands.command()
         async def skip(self, ctx):
-            await ctx.voice_client.stop()        
+            if ctx.voice_client is None:
+                await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            ctx.voice_client.stop()        
 
         @commands.command()
         async def disconnect(self, ctx):
+            if ctx.voice_client is None:
+                ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
             await ctx.voice_client.disconnect()
 
         @commands.command()
         async def pause(self, ctx):
+            if ctx.voice_client is None:
+                await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
             await ctx.voice_client.pause()
 
         @commands.command()
         async def resume(self, ctx):
+            if ctx.voice_client is None:
+                await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
             await ctx.voice_client.resume()
 
-        @play.error
-        async def play_error(self, ctx, error):
-            if isinstance(error, commands.MissingRequiredArgument):
-                await ctx.send('What do you want me to play? Try doing "!play {song name}"')
 
 
 def setup(client):
