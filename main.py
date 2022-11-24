@@ -5,7 +5,7 @@ import clear
 import music
 import meme
 
-cogs = [meme, music, clear]
+cogs = [music, clear, meme]
 
 #Opening config 
 with open('./config.json', 'r') as cjson:
