@@ -8,7 +8,7 @@ Need To Install -
 
 - Discord Bot Key (From your Dev Portal after setting up an application)
 - FFMpeg inside the bot's root dir
-- Must installed Discord.py (using pip install)
+- Must installed Discord.py == 1.7.3 (using pip install)
 - Must install Youtube_dl (using pip install)
 
 
