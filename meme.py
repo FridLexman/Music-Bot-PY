@@ -13,7 +13,7 @@ class meme(commands.Cog):
         
         @client.event
         async def on_message(message:Member):
-            if message.author == client.user:
+            if message.author.bot:
                 return
             
             if any(word in message.content.lower() for word in MB_DICT):
