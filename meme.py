@@ -10,7 +10,7 @@ class meme(commands.Cog):
 
         @client.event
         async def on_message(message:Message):
-            if message.author == client.user or message.author.id == 969010164625735780:
+            if message.author.bot:
                 return
             if "based" in message.content.lower():
                 await message.reply("based on WHAT?")
