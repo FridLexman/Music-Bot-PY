@@ -3,10 +3,16 @@ from discord import *
 from discord.ext import commands
 import random
 import os
+import openai
+import json
 
 MB_DICT = ['MrBeast', 'Mr Beast', 'mr beast', 'MRBEAST']
 DICT2 = ['based', 'BASED', 'Based', 'BaSeD']
 
+with open('./config.json', 'r') as cjson:
+    config = json.load(cjson)
+
+openai.api_key= config["openai_apikey"]
 class meme(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -31,6 +37,23 @@ class meme(commands.Cog):
                 fileIndex = random.randint(0, len(mediaFiles)-1)
                 channel:TextChannel = client.get_channel(949810707535376415)
                 await channel.send(f"Get some GOOD SLEEP! {member.mention}", file=discord.File(f"media/{mediaFiles[fileIndex]}"), delete_after=20)
+                
+    @commands.command()
+    async def openai(self, ctx, *, search):
+        
+        response = openai.Image.create(
+        prompt= search,
+        n=1,
+        size="1024x1024"
+        )
+        image_url = response['data'][0]['url']
+        
+        await ctx.message.reply(image_url)
 
+    @openai.error
+    async def open_ai_error(self, ctx, error):
+        if isinstance(error, commands.CommandInvokeError):
+            await ctx.message.reply(error.original.user_message)
+            
 def setup(client):
     client.add_cog(meme(client))
