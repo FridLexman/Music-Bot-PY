@@ -5,6 +5,7 @@ import random
 import os
 import openai
 import json
+import requests
 
 MB_DICT = ['MrBeast', 'Mr Beast', 'mr beast', 'MRBEAST']
 DICT2 = ['based', 'BASED', 'Based', 'BaSeD']
@@ -38,6 +39,15 @@ class meme(commands.Cog):
                 channel:TextChannel = client.get_channel(949810707535376415)
                 await channel.send(f"Get some GOOD SLEEP! {member.mention}", file=discord.File(f"media/{mediaFiles[fileIndex]}"), delete_after=20)
                 
+    @commands.command()        
+    async def joke(self, ctx):
+        # Make a GET request to the icanhazdadjoke API
+        response = requests.get('https://icanhazdadjoke.com/', headers={"Accept": "application/json"})
+        # Get the joke from the response
+        joke = response.json()['joke']
+        # Send the joke to the channel
+        await ctx.send(joke)
+                   
     @commands.command()
     async def openai(self, ctx, *, search):
         
