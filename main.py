@@ -4,8 +4,9 @@ import json
 import clear
 import music
 import meme
+import diceroller
 
-cogs = [meme, music, clear]
+cogs = [music, clear, meme, diceroller]
 
 #Opening config 
 with open('./config.json', 'r') as cjson:
