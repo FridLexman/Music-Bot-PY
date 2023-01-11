@@ -6,6 +6,7 @@ import os
 import openai
 import json
 import requests
+import re
 
 MB_DICT = ['MrBeast', 'Mr Beast', 'mr beast', 'MRBEAST']
 DICT2 = ['based', 'BASED', 'Based', 'BaSeD']
@@ -48,12 +49,7 @@ class meme(commands.Cog):
         # Send the joke to the channel
         await ctx.send(joke)
         
-    @commands.command()
-    async def d20(self, ctx):
-        # Roll the dice and get a random number between 1 and 20
-        roll = random.randint(1, 20)
-        # Send the result to the channel
-        await ctx.send(f"You rolled a {roll}!")
+
                    
     @commands.command()
     async def openai(self, ctx, *, search):
