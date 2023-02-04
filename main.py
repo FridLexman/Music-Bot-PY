@@ -8,6 +8,7 @@ import diceroller
 
 cogs = [music, clear, meme, diceroller]
 
+
 #Opening config 
 with open('./config.json', 'r') as cjson:
     config = json.load(cjson)
@@ -20,6 +21,8 @@ intents = discord.Intents.all())
 
 @client.event
 async def on_ready():
+    activity = discord.Activity(name="To Your Packets", type=discord.ActivityType.listening)
+    await client.change_presence(status=discord.Status.online, activity=activity)
     print(f'Logged in as {client.user} (ID: {client.user.id})')
     print('------')
 
