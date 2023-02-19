@@ -23,13 +23,8 @@ class meme(commands.Cog):
         async def on_message(message:Member):
             if message.author.bot:
                 return
-            
             if any(word in message.content.lower() for word in MB_DICT):
                 await message.reply('I LOVE MR. BEAST!!!')# if the message is 'Mr. Beast', the bot responds with 'I LOVE MR. BEAST!!!'
-
-            if any(word in message.content.lower() for word in DICT2):
-                await message.reply("based on WHAT???")# if the message is 'based', the bot responds with 'based on WHAT???'
-                
             await client.process_commands(message)
             
         @client.event
