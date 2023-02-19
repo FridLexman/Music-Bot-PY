@@ -26,14 +26,15 @@ class meme(commands.Cog):
             await client.process_commands(message)
             
         @client.event
-        async def on_voice_state_update(member:Member, before, after:VoiceState):
-            if member.id == client.user.bot:
+        async def on_voice_state_update(member: Member, before, after: VoiceState):
+            if member.bot:
                 return
-            if after.channel == None and before.channel.guild.name == "Jakoby's Safe Haven":
-                mediaFiles = os.listdir("media/.")
-                fileIndex = random.randint(0, len(mediaFiles)-1)
-                channel:TextChannel = client.get_channel(949810707535376415)
-                await channel.send(f"Get some GOOD SLEEP! {member.mention}", file=discord.File(f"media/{mediaFiles[fileIndex]}"), delete_after=20)
+            if after.channel is None and before.channel.guild.name == "Jakoby's Safe Haven":
+                media_files = os.listdir("media/.")
+                file_index = random.randint(0, len(media_files) - 1)
+                channel: TextChannel = client.get_channel(949810707535376415)
+                await channel.send(f"Get some GOOD SLEEP! {member.mention}", file=discord.File(f"media/{media_files[file_index]}"), delete_after=20)
+
                 
     @commands.command()        
     async def joke(self, ctx):

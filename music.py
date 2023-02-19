@@ -54,7 +54,7 @@ class music(commands.Cog):
             queue.pop(0)
 
     def getYoutubeLink(self, searchQuery):
-        YDL_OPTIONS = {'format': 'bestaudio', 'noplaylist': 'True', 'extract_flat': 'in_playlist', 'default_search': 'auto'}
+        YDL_OPTIONS = {'format': 'bestaudio/best', 'noplaylist': 'True', 'extract_flat': 'in_playlist', 'default_search': 'auto'}
         data = dict()
         query_string = urllib.parse.urlencode({'search_query': searchQuery})
         htm_content = urllib.request.urlopen(
