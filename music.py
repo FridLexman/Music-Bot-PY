@@ -72,7 +72,7 @@ class music(commands.Cog):
     @play.error
     async def play_error(self, ctx, error):
         if isinstance(error, commands.MissingRequiredArgument):
-            await ctx.send('What do you want me to play? Try doing "!play {song name}"')
+            await ctx.send('What do you want me to play? Try doing ".play {song name}"')
 
     @commands.command()
     async def clear_q(self, ctx):
@@ -81,7 +81,7 @@ class music(commands.Cog):
     @commands.command()
     async def stop(self, ctx):
         if ctx.voice_client is None:
-            await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            await ctx.send('I am not connected! Try playing a song using ".play {song name}"')
         ctx.voice_client.stop()   
         queue = []
         await ctx.voice_client.disconnect()    
@@ -89,25 +89,25 @@ class music(commands.Cog):
     @commands.command()
     async def skip(self, ctx):
         if ctx.voice_client is None:
-            await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            await ctx.send('I am not connected! Try playing a song using ".play {song name}"')
         ctx.voice_client.stop()        
 
     @commands.command()
     async def disconnect(self, ctx):
         if ctx.voice_client is None:
-            ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            await ctx.send('I am not connected! Try playing a song using ".play {song name}"')
         await ctx.voice_client.disconnect()
 
     @commands.command()
     async def pause(self, ctx):
         if ctx.voice_client is None:
-            await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            await ctx.send('I am not connected! Try playing a song using ".play {song name}"')
         await ctx.voice_client.pause()
 
     @commands.command()
     async def resume(self, ctx):
         if ctx.voice_client is None:
-            await ctx.send('I am not connected! Try using "!join" or play a song using "!play {song name}"')
+            await ctx.send('I am not connected! Try playing a song using ".play {song name}"')
         await ctx.voice_client.resume() 
         queue = []
 
