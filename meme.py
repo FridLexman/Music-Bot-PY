@@ -6,10 +6,8 @@ import os
 import openai
 import json
 import requests
-import re
 
 MB_DICT = ['MrBeast', 'Mr Beast', 'mr beast', 'MRBEAST']
-DICT2 = ['based', 'BASED', 'Based', 'BaSeD']
 
 with open('./config.json', 'r') as cjson:
     config = json.load(cjson)
@@ -23,17 +21,14 @@ class meme(commands.Cog):
         async def on_message(message:Member):
             if message.author.bot:
                 return
-            
             if any(word in message.content.lower() for word in MB_DICT):
                 await message.reply('I LOVE MR. BEAST!!!')# if the message is 'Mr. Beast', the bot responds with 'I LOVE MR. BEAST!!!'
-
-            if any(word in message.content.lower() for word in DICT2):
-                await message.reply("based on WHAT???")# if the message is 'based', the bot responds with 'based on WHAT???'
-                
             await client.process_commands(message)
             
         @client.event
         async def on_voice_state_update(member:Member, before, after:VoiceState):
+            if member.id == client.user.bot:
+                return
             if after.channel == None and before.channel.guild.name == "Jakoby's Safe Haven":
                 mediaFiles = os.listdir("media/.")
                 fileIndex = random.randint(0, len(mediaFiles)-1)
@@ -48,9 +43,8 @@ class meme(commands.Cog):
         joke = response.json()['joke']
         # Send the joke to the channel
         await ctx.send(joke)
-        
 
-                   
+    
     @commands.command()
     async def openai(self, ctx, *, search):
         

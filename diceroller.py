@@ -3,9 +3,6 @@ from discord.ext import commands
 import random
 import re
 
-
-
-
 class diceroller(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -33,7 +30,6 @@ class diceroller(commands.Cog):
             await ctx.send(f'Rolled {dice_string} and got {total}')
         else:
             await ctx.send("Invalid input, please use format XdY or XdY+Z")
-            
-            
+             
 def setup(client):
     client.add_cog(diceroller(client))
