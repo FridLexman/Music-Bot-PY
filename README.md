@@ -12,16 +12,16 @@ Need To Install -
 - Must install Youtube_dl (using pip install)
 
 
-commands list(prefix = ".") = 
+commands list(prefix = ".") =
 
 Music Commands:
-- play[No paramaters] (Start playing songs in the queue over VOIP)
-- queue[Song name or youtube link] (Queues searched song)
-- pauuse[No paramaters] (Pauses current song)
-- resume[No paramaters] (Resumes the current song)
-- stop[No paramaters] (Stop VOIP, doesn't disconnect, but does delete current song)
-- disconnect[No paramaters] (Disconnects the bot from voice channel)
-- clear_q[No paramaters] (Clears active song queue)
 
+play[Song name or Youtube link] (Start playing songs in the queue over VOIP)
+pause[No paramaters] (Pauses current song)
+resume[No paramaters] (Resumes the current song)
+stop[No paramaters] (Stop VOIP, doesn't disconnect, but does delete current song)
+disconnect[No paramaters] (Disconnects the bot from voice channel)
+clear_q[No paramaters] (Clears active song queue)
 Other Commands:
-- clear[No paramaters] (clears 25 lins of the chat)
+
+clear[Int] (clears 10 lines of the chat by default)
